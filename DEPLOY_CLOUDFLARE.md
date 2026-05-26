@@ -50,6 +50,36 @@ npm run cf:deploy
 
 First deploy builds the Docker image (several minutes). The Worker URL becomes your public API base.
 
+### Worker name must match Cloudflare
+
+In `wrangler.jsonc`, the top-level `"name"` must be the **same** Worker you deploy to. The container application name is set explicitly as:
+
+`{worker-name}-backendcontainer` → default in this repo: `chat-rely-backend-backendcontainer`
+
+If your dashboard shows `chat-rely-backend3`, either:
+
+1. Change `wrangler.jsonc` `"name"` to `chat-rely-backend3` and containers `name` to `chat-rely-backend3-backendcontainer`, or  
+2. Delete the old Worker and redeploy with `chat-rely-backend`.
+
+`class_name` must stay **`BackendContainer`** (matches `export class BackendContainer` in `src/index.ts`).
+
+### Error: “no container application assigned to this Durable Object namespace”
+
+This means the Docker image exists but Cloudflare did not link it to the `BackendContainer` Durable Object. Usually:
+
+1. `containers[].class_name` ≠ exported class name, or  
+2. `wrangler deploy` exited before the container-application registration step (scroll logs after “image pushed”), or  
+3. Worker `name` in wrangler ≠ the Worker that owns the DO namespace.
+
+**Fix:** align names as above, then:
+
+```bash
+npm run cf:deploy
+npx wrangler containers list
+```
+
+Wait a few minutes after first deploy for container provisioning. Confirm `max_instances` is &gt; 0 (this repo uses `10`).
+
 ## Local dev with Cloudflare
 
 ```bash

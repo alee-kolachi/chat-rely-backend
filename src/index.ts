@@ -1,5 +1,4 @@
-import { Container } from "@cloudflare/containers";
-import { env } from "cloudflare:workers";
+import { Container, getContainer } from "@cloudflare/containers";
 
 /** Env vars forwarded from Worker secrets/vars into the FastAPI container process. */
 const CONTAINER_ENV_KEYS = [
@@ -52,11 +51,11 @@ const CONTAINER_ENV_KEYS = [
   "EMBEDDING_PRICE_PER_MILLION_USD",
 ] as const;
 
-function containerEnvFromWorker(): Record<string, string> {
-  const workerEnv = env as unknown as Record<string, unknown>;
+function containerEnvFromBindings(workerEnv: Env): Record<string, string> {
+  const record = workerEnv as unknown as Record<string, unknown>;
   const out: Record<string, string> = {};
   for (const key of CONTAINER_ENV_KEYS) {
-    const value = workerEnv[key];
+    const value = record[key];
     if (typeof value === "string" && value.length > 0) {
       out[key] = value;
     }
@@ -64,11 +63,19 @@ function containerEnvFromWorker(): Record<string, string> {
   return out;
 }
 
-export class BackendContainer extends Container {
+/** Durable Object + container gateway for the FastAPI app. Class name must match wrangler `class_name`. */
+export class BackendContainer extends Container<Env> {
   defaultPort = 8080;
-  /** Keep API warm between requests; tune down to save cost if needed. */
   sleepAfter = "30m";
-  envVars = containerEnvFromWorker();
+
+  override onStart(): void {
+    this.envVars = containerEnvFromBindings(this.env);
+    console.log("BackendContainer started");
+  }
+
+  override onError(error: unknown): void {
+    console.error("BackendContainer error:", error);
+  }
 }
 
 export interface Env {
@@ -77,7 +84,7 @@ export interface Env {
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
-    const container = env.BACKEND.getByName("api");
+    const container = getContainer(env.BACKEND, "api");
     return container.fetch(request);
   },
 };

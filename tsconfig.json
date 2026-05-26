@@ -12,5 +12,5 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["worker/**/*.ts", "worker-configuration.d.ts"]
+  "include": ["src/index.ts", "worker-configuration.d.ts"]
 }

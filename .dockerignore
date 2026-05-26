@@ -13,5 +13,5 @@ logs
 .env
 .env.*
 !.env.example
-worker
+src/index.ts
 package-lock.json

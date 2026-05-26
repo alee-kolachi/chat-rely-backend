@@ -1,11 +1,13 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "chat-rely-backend3",
-  "main": "worker/index.ts",
+  "main": "src/index.ts",
   "compatibility_date": "2026-05-26",
+  "compatibility_flags": ["nodejs_compat"],
   "observability": {
     "enabled": true
   },
+  "upload_source_maps": true,
   "vars": {
     "APP_ENV": "production",
     "LOG_FILE_ENABLED": "false",
@@ -14,9 +16,12 @@
   },
   "containers": [
     {
+      "name": "chat-rely-backend3-backendcontainer",
       "class_name": "BackendContainer",
       "image": "./Dockerfile",
-      "max_instances": 10
+      "image_build_context": ".",
+      "max_instances": 10,
+      "instance_type": "basic"
     }
   ],
   "durable_objects": {
