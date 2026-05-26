@@ -2,10 +2,11 @@
 FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim AS builder
 
 WORKDIR /app
-COPY pyproject.toml uv.lock ./
+COPY pyproject.toml uv.lock README.md ./
 COPY src ./src
 
-RUN uv sync --frozen --no-dev
+# Install dependencies only; app code is loaded via PYTHONPATH=/app/src
+RUN uv sync --frozen --no-dev --no-install-project
 
 FROM python:3.12-slim-bookworm
 
