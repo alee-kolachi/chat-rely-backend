@@ -1,7 +1,0 @@
-{"latency_ms": 2431.05, "pooler": false, "level": "info", "timestamp": "2026-05-26T10:27:46.944316Z", "message": "db.ready"}
-{"hint": "Use Supabase transaction pooler (port 6543) in DATABASE_URL for lower API latency", "level": "warning", "timestamp": "2026-05-26T10:27:46.945986Z", "message": "db.pooler_recommended"}
-{"latency_ms": 2431.05, "hint": "Deploy the API in the same region as your Supabase project", "level": "warning", "timestamp": "2026-05-26T10:27:46.946452Z", "message": "db.high_latency"}
-{"attempted": 1, "warmed": 1, "level": "info", "timestamp": "2026-05-26T10:27:51.520767Z", "message": "runtime.shopify_warmup_done"}
-{"primed": 1, "level": "info", "timestamp": "2026-05-26T10:27:52.420257Z", "message": "runtime.shopify_disconnected_warmup_done"}
-{"primed": 2, "level": "info", "timestamp": "2026-05-26T10:27:55.121464Z", "message": "runtime.kb_warmup_done"}
-HTTP Request: GET https://uxqqnstmpuzcsdylcgzw.supabase.co/auth/v1/.well-known/jwks.json "HTTP/1.1 200 OK"
