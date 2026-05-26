@@ -1,0 +1,14 @@
+# Copy to .dev.vars for `wrangler dev` (never commit .dev.vars).
+# Use the same keys as backend/.env.example — values are forwarded into the container.
+
+APP_ENV=development
+DATABASE_URL=postgresql+asyncpg://postgres:postgres@127.0.0.1:54322/postgres
+SUPABASE_JWKS_URL=http://127.0.0.1:54321/auth/v1/.well-known/jwks.json
+SUPABASE_ISSUER=http://127.0.0.1:54321/auth/v1
+SUPABASE_AUDIENCE=authenticated
+OPENAI_API_KEY=
+PUBLIC_API_BASE_URL=http://127.0.0.1:8787
+BILLING_APP_BASE_URL=http://localhost:3000
+ALLOWED_ORIGINS=["http://localhost:3000","http://127.0.0.1:3000"]
+INTEGRATION_TOKEN_FERNET_KEY=
+INTEGRATION_OAUTH_STATE_SECRET=

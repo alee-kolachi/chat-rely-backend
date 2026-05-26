@@ -1,8 +1,17 @@
 # ChatRely Backend
 
 FastAPI platform foundation for ChatRely.
- 
-## Run
+
+## Deploy on Cloudflare
+
+Production deploy uses **Cloudflare Containers** (Docker) + a small Worker proxy. See **[DEPLOY_CLOUDFLARE.md](./DEPLOY_CLOUDFLARE.md)**.
+
+```bash
+npm install
+npm run cf:deploy
+```
+
+## Run (local)
 
 ```bash
 uv run uvicorn app.main:create_app --factory --reload

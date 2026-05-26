@@ -1,0 +1,7 @@
+2026-05-26 10:27:46 | INFO    | db | db.ready | latency_ms=2431.05 pooler=false
+2026-05-26 10:27:46 | WARNING | db | db.pooler_recommended | hint="Use Supabase transaction pooler (port 6543) in DATABASE_URL for lower API latency"
+2026-05-26 10:27:46 | WARNING | db | db.high_latency | latency_ms=2431.05 hint="Deploy the API in the same region as your Supabase project"
+2026-05-26 10:27:51 | INFO    | runtime.shopify_warmup | runtime.shopify_warmup_done | attempted=1 warmed=1
+2026-05-26 10:27:52 | INFO    | runtime.shopify_warmup | runtime.shopify_disconnected_warmup_done | primed=1
+2026-05-26 10:27:55 | INFO    | runtime.cache_warmup | runtime.kb_warmup_done | primed=2
+HTTP Request: GET https://uxqqnstmpuzcsdylcgzw.supabase.co/auth/v1/.well-known/jwks.json "HTTP/1.1 200 OK"

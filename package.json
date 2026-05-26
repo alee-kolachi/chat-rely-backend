@@ -1,0 +1,19 @@
+{
+  "name": "chat-rely-backend-cloudflare",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "cf:types": "wrangler types",
+    "cf:dev": "wrangler dev",
+    "cf:deploy": "wrangler deploy",
+    "cf:secrets": "node scripts/print-wrangler-secrets.mjs"
+  },
+  "devDependencies": {
+    "@cloudflare/containers": "^0.3.4",
+    "@cloudflare/workers-types": "^4.20250525.0",
+    "typescript": "~5.7.2",
+    "wrangler": "^4.94.0"
+  }
+}
