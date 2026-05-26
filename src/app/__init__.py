@@ -1,0 +1,2 @@
+"""ChatRely backend app package."""
+

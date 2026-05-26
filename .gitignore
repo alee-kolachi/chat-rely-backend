@@ -1,0 +1,21 @@
+## Environment and virtualenv
+.env
+.env.*
+!.env.example
+.venv/
+
+## Python bytecode/cache
+__pycache__/
+*.py[cod]
+
+## Tooling/test artifacts
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+## Build artifacts
+build/
+dist/
+*.egg-info/
